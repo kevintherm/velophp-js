@@ -1,7 +1,7 @@
 {
-  "name": "@velophp/sdk",
+  "name": "@veloquent/sdk",
   "version": "1.0.0",
-  "description": "Lightweight, adapter-first JavaScript SDK for VeloPHP",
+  "description": "Lightweight, adapter-first JavaScript SDK for Veloquent",
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
@@ -27,13 +27,14 @@
     "LICENSE"
   ],
   "keywords": [
-    "velo",
+    "veloquent",
     "baas",
     "backend",
     "sdk",
     "adapter",
     "auth",
-    "records"
+    "records",
+    "laravel"
   ],
   "author": "",
   "license": "MIT",

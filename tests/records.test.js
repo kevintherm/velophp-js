@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'bun:test'
-import { VeloPHP } from '../src/core/client.js'
+import { Veloquent } from '../src/core/client.js'
 import { SdkError } from '../src/errors/sdk-error.js'
 import { MockHttpAdapter, MockStorageAdapter } from './mocks.js'
 
@@ -24,7 +24,7 @@ describe('Records', () => {
       }
     })
 
-    const sdk = new VeloPHP({
+    const sdk = new Veloquent({
       apiUrl: 'http://localhost:3000',
       http: httpAdapter,
       storage: storageAdapter
@@ -57,7 +57,7 @@ describe('Records', () => {
       meta: { total: 1 }
     })
 
-    const sdk = new VeloPHP({
+    const sdk = new Veloquent({
       apiUrl: 'http://localhost:3000',
       http: httpAdapter,
       storage: storageAdapter
@@ -93,7 +93,7 @@ describe('Records', () => {
       }
     })
 
-    const sdk = new VeloPHP({
+    const sdk = new Veloquent({
       apiUrl: 'http://localhost:3000',
       http: httpAdapter,
       storage: storageAdapter
@@ -131,7 +131,7 @@ describe('Records', () => {
       }
     })
 
-    const sdk = new VeloPHP({
+    const sdk = new Veloquent({
       apiUrl: 'http://localhost:3000',
       http: httpAdapter,
       storage: storageAdapter
@@ -161,7 +161,7 @@ describe('Records', () => {
       }
     })
 
-    const sdk = new VeloPHP({
+    const sdk = new Veloquent({
       apiUrl: 'http://localhost:3000',
       http: httpAdapter,
       storage: storageAdapter
@@ -190,7 +190,7 @@ describe('Records', () => {
       data: []
     })
 
-    const sdk = new VeloPHP({
+    const sdk = new Veloquent({
       apiUrl: 'http://localhost:3000',
       http: httpAdapter,
       storage: storageAdapter
@@ -214,7 +214,7 @@ describe('Records', () => {
       data: { id: 'rec-1' }
     })
 
-    const sdk = new VeloPHP({
+    const sdk = new Veloquent({
       apiUrl: 'http://localhost:3000',
       http: httpAdapter,
       storage: storageAdapter
@@ -241,7 +241,7 @@ describe('Records', () => {
       }
     })
 
-    const sdk = new VeloPHP({
+    const sdk = new Veloquent({
       apiUrl: 'http://localhost:3000',
       http: httpAdapter,
       storage: storageAdapter
@@ -267,7 +267,7 @@ describe('Records', () => {
       message: 'Not found'
     })
 
-    const sdk = new VeloPHP({
+    const sdk = new Veloquent({
       apiUrl: 'http://localhost:3000',
       http: httpAdapter,
       storage: storageAdapter

@@ -1,5 +1,5 @@
 import { expect, test, describe, beforeAll, afterAll } from "bun:test";
-import { VeloPHP, createFetchAdapter, createEchoAdapter } from "../src/index.js";
+import { Veloquent, createFetchAdapter, createEchoAdapter } from "../src/index.js";
 import Echo from "laravel-echo";
 
 // Use require to fetch the exactly correct CommonJS export for pusher-js in bun test
@@ -23,7 +23,7 @@ const describeIntegration = runIntegration ? describe : describe.skip;
 
 /**
  * REALTIME INTEGRATION TEST
- * Requires a live VeloPHP server at http://localhost:80
+ * Requires a live Veloquent server at http://localhost:80
  * Uses credentials from .env to connect to the realtime broadcaster.
  */
 describeIntegration("Live Realtime Integration", () => {
@@ -33,7 +33,7 @@ describeIntegration("Live Realtime Integration", () => {
   let echoInstance;
 
   beforeAll(() => {
-    sdk = new VeloPHP({
+    sdk = new Veloquent({
       apiUrl: "http://localhost:80",
       http: createFetchAdapter(),
       storage: {

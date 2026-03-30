@@ -1,5 +1,5 @@
 import { describe, it, expect, mock, afterEach } from 'bun:test'
-import { VeloPHP } from '../src/core/client.js'
+import { Veloquent } from '../src/core/client.js'
 import { MockHttpAdapter, MockStorageAdapter } from './mocks.js'
 
 // Simple mock for Echo channel
@@ -58,7 +58,7 @@ describe('Realtime', () => {
 
     storageAdapter.setItem('vp:token', 'test-token')
 
-    sdk = new VeloPHP({
+    sdk = new Veloquent({
       apiUrl: 'http://localhost:3000',
       http: httpAdapter,
       storage: storageAdapter,

@@ -10,15 +10,15 @@ import { Records } from '../modules/records.js'
 import { Realtime } from '../modules/realtime.js'
 
 /**
- * VeloPHP - Main SDK client
+ * Veloquent - Main SDK client
  * Access auth and records modules through this client
  * 
  * @class
  * @example
  * ```javascript
- * import { VeloPHP, createFetchAdapter, createLocalStorageAdapter } from '@velophp/sdk'
+ * import { Veloquent, createFetchAdapter, createLocalStorageAdapter } from '@veloquent/sdk'
  * 
- * const sdk = new VeloPHP({
+ * const sdk = new Veloquent({
  *   apiUrl: 'https://example.com',
  *   http: createFetchAdapter(),
  *   storage: createLocalStorageAdapter()
@@ -28,7 +28,7 @@ import { Realtime } from '../modules/realtime.js'
  * const records = await sdk.records.list('users')
  * ```
  */
-export class VeloPHP {
+export class Veloquent {
   /**
    * @param {Partial<import('./config.js').SdkConfig>} config
    */

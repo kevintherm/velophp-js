@@ -1,5 +1,5 @@
 /**
- * HTTP Adapter type definitions for Velo SDK
+ * HTTP Adapter type definitions for Veloquent SDK
  * @module adapters/http/types
  */
 

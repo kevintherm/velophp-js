@@ -29,7 +29,7 @@ function buildUrl(baseUrl, path, params) {
 }
 
 /**
- * RequestHelper manages HTTP communication with Velo API
+ * RequestHelper manages HTTP communication with Veloquent API
  * @class
  */
 export class RequestHelper {
@@ -127,7 +127,7 @@ export class RequestHelper {
         throw this.errorFromResponse(response)
       }
 
-      // Unwrap common Velo response envelope: { message, data, meta, errors }
+      // Unwrap common Veloquent response envelope: { message, data, meta, errors }
       // Note: /api/user endpoint does NOT use envelope, but that's out of MVP scope
       if (response.data && typeof response.data === 'object') {
         if ('data' in response.data) {
@@ -157,7 +157,7 @@ export class RequestHelper {
   errorFromResponse(response) {
     const { status, data } = response
 
-    // Attempt to extract error details from Velo error envelope
+    // Attempt to extract error details from Veloquent error envelope
     let message = data?.message || 'Unknown error'
     let details = data?.errors || data
 

@@ -1,5 +1,5 @@
 /**
- * Async storage adapter for Velo SDK (e.g. for React Native AsyncStorage)
+ * Async storage adapter for Veloquent SDK (e.g. for React Native AsyncStorage)
  * @module adapters/storage/async-storage-adapter
  */
 
@@ -18,10 +18,10 @@ class AsyncStorageAdapter {
   }
 
   // Sync methods (not used when isAsync is true, but required by interface)
-  getItem() { throw new Error('Velo SDK: Use getItemAsync for this adapter') }
-  setItem() { throw new Error('Velo SDK: Use setItemAsync for this adapter') }
-  removeItem() { throw new Error('Velo SDK: Use removeItemAsync for this adapter') }
-  clear() { throw new Error('Velo SDK: Use clearAsync for this adapter') }
+  getItem() { throw new Error('Veloquent SDK: Use getItemAsync for this adapter') }
+  setItem() { throw new Error('Veloquent SDK: Use setItemAsync for this adapter') }
+  removeItem() { throw new Error('Veloquent SDK: Use removeItemAsync for this adapter') }
+  clear() { throw new Error('Veloquent SDK: Use clearAsync for this adapter') }
 
   /**
    * @param {string} key

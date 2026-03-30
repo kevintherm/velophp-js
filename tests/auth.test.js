@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'bun:test'
-import { VeloPHP } from '../src/core/client.js'
+import { Veloquent } from '../src/core/client.js'
 import { SdkError } from '../src/errors/sdk-error.js'
 import { MockHttpAdapter, MockStorageAdapter, MockAsyncStorageAdapter } from './mocks.js'
 
@@ -17,7 +17,7 @@ describe('Auth', () => {
       }
     })
 
-    const sdk = new VeloPHP({
+    const sdk = new Veloquent({
       apiUrl: 'http://localhost:3000',
       http: httpAdapter,
       storage: storageAdapter
@@ -46,7 +46,7 @@ describe('Auth', () => {
       }
     })
 
-    const sdk = new VeloPHP({
+    const sdk = new Veloquent({
       apiUrl: 'http://localhost:3000',
       http: httpAdapter,
       storage: storageAdapter
@@ -75,7 +75,7 @@ describe('Auth', () => {
       data: []
     })
 
-    const sdk = new VeloPHP({
+    const sdk = new Veloquent({
       apiUrl: 'http://localhost:3000',
       http: httpAdapter,
       storage: storageAdapter
@@ -96,7 +96,7 @@ describe('Auth', () => {
       data: []
     })
 
-    const sdk = new VeloPHP({
+    const sdk = new Veloquent({
       apiUrl: 'http://localhost:3000',
       http: httpAdapter,
       storage: storageAdapter
@@ -120,7 +120,7 @@ describe('Auth', () => {
       data: []
     })
 
-    const sdk = new VeloPHP({
+    const sdk = new Veloquent({
       apiUrl: 'http://localhost:3000',
       http: httpAdapter,
       storage: storageAdapter
@@ -150,7 +150,7 @@ describe('Auth', () => {
       }
     })
 
-    const sdk = new VeloPHP({
+    const sdk = new Veloquent({
       apiUrl: 'http://localhost:3000',
       http: httpAdapter,
       storage: storageAdapter
@@ -182,7 +182,7 @@ describe('Auth', () => {
       }
     })
 
-    const sdk = new VeloPHP({
+    const sdk = new Veloquent({
       apiUrl: 'http://localhost:3000',
       http: httpAdapter,
       storage: storageAdapter
@@ -209,7 +209,7 @@ describe('Auth', () => {
       data: { id: 'user-123', email: 'test@example.com' }
     })
 
-    const sdk = new VeloPHP({
+    const sdk = new Veloquent({
       apiUrl: 'http://localhost:3000',
       http: httpAdapter,
       storage: storageAdapter
@@ -230,7 +230,7 @@ describe('Auth', () => {
       errors: { auth: 'Invalid token' }
     })
 
-    const sdk = new VeloPHP({
+    const sdk = new Veloquent({
       apiUrl: 'http://localhost:3000',
       http: httpAdapter,
       storage: storageAdapter
@@ -251,7 +251,7 @@ describe('Auth', () => {
 
     storageAdapter.setItem('vp:token', 'sync-token')
 
-    const sdk = new VeloPHP({
+    const sdk = new Veloquent({
       apiUrl: 'http://localhost:3000',
       http: httpAdapter,
       storage: storageAdapter
@@ -266,7 +266,7 @@ describe('Auth', () => {
 
     await storageAdapter.setItemAsync('vp:token', 'async-token')
 
-    const sdk = new VeloPHP({
+    const sdk = new Veloquent({
       apiUrl: 'http://localhost:3000',
       http: httpAdapter,
       storage: storageAdapter

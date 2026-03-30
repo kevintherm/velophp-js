@@ -47,7 +47,7 @@ async function build() {
       ...baseConfig,
       outfile: join(DIST_DIR, 'index.global.js'),
       format: 'iife',
-      globalName: 'VeloPHP',
+      globalName: 'Veloquent',
     }));
 
     if (isWatch) {

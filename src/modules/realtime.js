@@ -41,7 +41,7 @@ export class Realtime {
    */
   async subscribe(collection, options = {}, callback) {
     if (!this.adapter) {
-      throw new Error('SDK: Realtime adapter is not configured. Pass it in VeloPHP config.')
+      throw new Error('SDK: Realtime adapter is not configured. Pass it in Veloquent config.')
     }
 
     // 1. Inform server about the subscription
@@ -91,7 +91,7 @@ export class Realtime {
       events.forEach((eventName) => {
         const fullEventName = `record.${eventName}`
         const dispatch = (payload) => {
-          // Flatten the payload if it's the standard Velo envelope
+          // Flatten the payload if it's the standard Veloquent envelope
           const dataToReturn = (payload && payload.record) ? payload.record : payload;
 
           // Filter by collection if the server provided it

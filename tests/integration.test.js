@@ -1,18 +1,18 @@
 import { expect, test, describe } from "bun:test";
-import { VeloPHP, createFetchAdapter } from "../src/index.js";
+import { Veloquent, createFetchAdapter } from "../src/index.js";
 
 const runIntegration = process.env.RUN_INTEGRATION_TESTS === "true";
 const describeIntegration = runIntegration ? describe : describe.skip;
 
 /**
  * INTEGRATION TEST
- * This test expects a live VeloPHP server running at http://localhost:80
+ * This test expects a live Veloquent server running at http://localhost:80
  * Note: Assumes the server has a collection named 'users' (auth) and 'posts' (records) with 'posts' collection's api_rules set to allow all
  */
 describeIntegration("Live Server Integration", () => {
   const storageData = {};
 
-  const sdk = new VeloPHP({
+  const sdk = new Veloquent({
     apiUrl: "http://localhost:80",
     http: createFetchAdapter(),
     storage: {

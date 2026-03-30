@@ -1,5 +1,5 @@
 /**
- * Storage Adapter type definitions for Velo SDK
+ * Storage Adapter type definitions for Veloquent SDK
  * @module adapters/storage/types
  */
 

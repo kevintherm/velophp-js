@@ -1,6 +1,6 @@
-# VeloPHP JavaScript SDK
+# Veloquent JavaScript SDK
 
-Lightweight, adapter-first SDK for Velo backend. Choose your own HTTP client and storage implementation.
+Lightweight, adapter-first SDK for Veloquent backend. Choose your own HTTP client and storage implementation.
 
 ## Features
 
@@ -11,9 +11,9 @@ Lightweight, adapter-first SDK for Velo backend. Choose your own HTTP client and
 ## Quick Start
 
 ```javascript
-import { VeloPHP, createFetchAdapter, createLocalStorageAdapter } from '@velophp/sdk'
+import { Veloquent, createFetchAdapter, createLocalStorageAdapter } from '@veloquent/sdk'
 
-const sdk = new VeloPHP({
+const sdk = new Veloquent({
   apiUrl: 'https://api.example.com',
   http: createFetchAdapter(),
   storage: createLocalStorageAdapter()
@@ -39,7 +39,7 @@ await sdk.auth.logout('users')
 ### Node.js Example
 
 ```javascript
-import { VeloPHP } from '@velophp/sdk'
+import { Veloquent } from '@veloquent/sdk'
 import { createNodeFetchAdapter } from './adapters/node-fetch-adapter.js'
 
 const memoryStorage = {
@@ -51,7 +51,7 @@ const memoryStorage = {
   clear() { this.data = {} }
 }
 
-const sdk = new VeloPHP({
+const sdk = new Veloquent({
   apiUrl: 'https://api.example.com',
   http: createNodeFetchAdapter(),
   storage: memoryStorage
@@ -61,11 +61,11 @@ const sdk = new VeloPHP({
 ### React Native Example
 
 ```javascript
-import { VeloPHP, createFetchAdapter } from '@velophp/sdk'
+import { Veloquent, createFetchAdapter } from '@veloquent/sdk'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { createAsyncStorageAdapter } from './adapters/async-storage-adapter.js'
 
-const sdk = new VeloPHP({
+const sdk = new Veloquent({
   apiUrl: 'https://api.example.com',
   http: createFetchAdapter(),
   storage: createAsyncStorageAdapter(AsyncStorage)
@@ -171,10 +171,10 @@ class CustomHttpAdapter {
 
 ## Realtime Module
 
-Velo SDK supports realtime subscriptions via Laravel Echo.
+Veloquent SDK supports realtime subscriptions via Laravel Echo.
 
 ```javascript
-import { VeloPHP, createFetchAdapter, createEchoAdapter } from '@velophp/sdk'
+import { Veloquent, createFetchAdapter, createEchoAdapter } from '@veloquent/sdk'
 import Echo from 'laravel-echo'
 import Pusher from 'pusher-js'
 
@@ -193,7 +193,7 @@ const echo = new Echo({
 const realtimeAdapter = createEchoAdapter(echo)
 
 // 3. Initialize SDK with realtime adapter
-const sdk = new VeloPHP({
+const sdk = new Veloquent({
   apiUrl: 'https://api.example.com',
   http: createFetchAdapter(),
   storage: localStorage,
@@ -270,7 +270,7 @@ class AsyncStorageAdapter {
 ## Error Handling
 
 ```javascript
-import { SdkError } from '@velophp/sdk'
+import { SdkError } from '@veloquent/sdk'
 
 try {
   await sdk.records.create('posts', {})
