@@ -31,14 +31,39 @@ export class Auth {
    * const { token } = await sdk.auth.login('users', 'user@example.com', 'password')
    * ```
    */
-  async login(collection, identity, password) {
+  async login(collection, email, password) {
     const result = await this.requestHelper.execute({
       method: 'POST',
       path: `/collections/${collection}/auth/login`,
-      body: { identity, password }
+      body: { email, password }
     })
 
     // Extract token and store in storage
+    const token = result.data.token
+    const meta = {
+      expires_in: result.data.expires_in,
+      collection_name: result.data.collection_name,
+      issued_at: new Date().toISOString()
+    }
+
+    await this.requestHelper.setToken(token, meta)
+
+    return result.data
+  }
+
+  /**
+   * Impersonate another auth record and store the returned token
+   * @param {string} collection - Auth collection name
+   * @param {string} recordId - Record ULID to impersonate
+   * @returns {Promise<Object>} Token payload
+   * @throws {SdkError}
+   */
+  async impersonate(collection, recordId) {
+    const result = await this.requestHelper.execute({
+      method: 'POST',
+      path: `/collections/${collection}/auth/impersonate/${recordId}`
+    })
+
     const token = result.data.token
     const meta = {
       expires_in: result.data.expires_in,

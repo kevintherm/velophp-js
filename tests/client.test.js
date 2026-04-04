@@ -16,6 +16,9 @@ describe('Client', () => {
 
     expect(sdk.auth).toBeDefined()
     expect(sdk.records).toBeDefined()
+    expect(sdk.collections).toBeDefined()
+    expect(sdk.schema).toBeDefined()
+    expect(sdk.onboarding).toBeDefined()
   })
 
   it('requires apiUrl', () => {

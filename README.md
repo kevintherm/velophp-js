@@ -7,6 +7,8 @@ Lightweight, adapter-first SDK for Veloquent backend. Choose your own HTTP clien
 - **Pluggable adapters**: Use default web adapters or bring your own HTTP and storage implementations
 - **Minimal core**: Only ~3KB gzipped for core SDK
 - **No Typescript**: JSDoc types for editor IntelliSense
+- **Consumer-facing helpers**: Records, auth, and realtime built for application consumers
+- **Superuser/admin helpers**: Collections, schema, onboarding, and impersonation require a valid superuser token and are documented in [SUPERUSER.md](SUPERUSER.md)
 
 ## Quick Start
 
@@ -94,6 +96,8 @@ await sdk.auth.logout('users')
 await sdk.auth.logoutAll('users')
 ```
 
+> Note: Superuser-only auth operations such as impersonation require a valid superuser token.
+
 ### Records Module
 
 ```javascript
@@ -128,6 +132,12 @@ const updated = await sdk.records.update('posts', recordId, {
 // Delete record
 await sdk.records.delete('posts', recordId)
 ```
+
+## Superuser / Admin Features
+
+Administrative SDK usage is documented separately in [SUPERUSER.md](SUPERUSER.md).
+
+> These operations require a valid superuser token and are not intended for regular application consumers.
 
 ## Custom HTTP Adapter
 
@@ -298,7 +308,7 @@ try {
 - Tokens are scoped to a specific auth collection
 - `auth.me('users')` only works if your token was issued from the `users` collection
   - If you want to check what collection the users is authenticated from do `auth.me()` without any parameters
-- Mixing collections will result in a 401 error
+  - Mixing collections will result in a 401 error
 
 ### Token Persistence
 - SDK automatically stores tokens in the provided storage adapter on login
@@ -307,7 +317,7 @@ try {
 
 ### Token Expiration
 - The SDK does NOT auto-refresh expired tokens
-- Implement re-authentication logic in your app
+- Implement re-authentication logic in your app or set token auth TTL to your preferences
 - On 401, prompt user to login again
 
 ## Testing

@@ -8,10 +8,13 @@ import { RequestHelper } from './request.js'
 import { Auth } from '../modules/auth.js'
 import { Records } from '../modules/records.js'
 import { Realtime } from '../modules/realtime.js'
+import { Collections } from '../modules/collections.js'
+import { Schema } from '../modules/schema.js'
+import { Onboarding } from '../modules/onboarding.js'
 
 /**
  * Veloquent - Main SDK client
- * Access auth and records modules through this client
+ * Access auth, records, collections, schema, onboarding and realtime modules through this client
  * 
  * @class
  * @example
@@ -37,6 +40,9 @@ export class Veloquent {
     const requestHelper = new RequestHelper(this.config)
     this.auth = new Auth(requestHelper)
     this.records = new Records(requestHelper)
+    this.collections = new Collections(requestHelper)
+    this.schema = new Schema(requestHelper)
+    this.onboarding = new Onboarding(requestHelper)
     this.realtime = new Realtime(requestHelper, this.config.realtime)
   }
 }

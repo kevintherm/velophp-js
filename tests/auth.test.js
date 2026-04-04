@@ -58,9 +58,38 @@ describe('Auth', () => {
     expect(req.method).toBe('POST')
     expect(req.url).toBe('http://localhost:3000/api/collections/users/auth/login')
     expect(req.body).toEqual({
-      identity: 'test@example.com',
+      email: 'test@example.com',
       password: 'password'
     })
+  })
+
+  it('impersonate stores the returned token', async () => {
+    const httpAdapter = new MockHttpAdapter()
+    const storageAdapter = new MockStorageAdapter()
+
+    httpAdapter.mockResponse(200, {
+      message: 'OK',
+      data: {
+        token: 'impersonation-token',
+        expires_in: 3600,
+        collection_name: 'users'
+      }
+    })
+
+    const sdk = new Veloquent({
+      apiUrl: 'http://localhost:3000',
+      http: httpAdapter,
+      storage: storageAdapter
+    })
+
+    const result = await sdk.auth.impersonate('users', 'rec-123')
+
+    expect(result.token).toBe('impersonation-token')
+    expect(storageAdapter.getItem('vp:token')).toBe('impersonation-token')
+
+    const req = httpAdapter.getLastRequest()
+    expect(req.method).toBe('POST')
+    expect(req.url).toBe('http://localhost:3000/api/collections/users/auth/impersonate/rec-123')
   })
 
   it('logout clears token', async () => {
