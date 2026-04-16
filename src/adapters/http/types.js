@@ -9,7 +9,7 @@
  * @property {string} url - Endpoint URL (relative to baseUrl)
  * @property {'GET'|'POST'|'PATCH'|'DELETE'} method - HTTP method
  * @property {Record<string, string>} [headers] - Request headers
- * @property {*} [body] - Request body (for POST/PATCH)
+ * @property {Object|FormData|string} [body] - Request body (for POST/PATCH). Pass a plain object for JSON, or FormData for multipart file uploads.
  * @property {AbortSignal} [signal] - Cancellation signal
  * @property {number} [timeout] - Request timeout in milliseconds
  */

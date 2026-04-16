@@ -39,9 +39,13 @@ class FetchAdapter {
       }
 
       if (req.body) {
-        fetchInit.body = typeof req.body === 'string' ? req.body : JSON.stringify(req.body)
-        if (!fetchInit.headers['content-type']) {
-          fetchInit.headers['content-type'] = 'application/json'
+        if (req.body instanceof FormData) {
+          fetchInit.body = req.body
+        } else {
+          fetchInit.body = typeof req.body === 'string' ? req.body : JSON.stringify(req.body)
+          if (!fetchInit.headers['content-type']) {
+            fetchInit.headers['content-type'] = 'application/json'
+          }
         }
       }
 

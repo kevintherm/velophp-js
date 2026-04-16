@@ -2,6 +2,22 @@
 
 Lightweight, adapter-first SDK for Veloquent backend. Choose your own HTTP client and storage implementation.
 
+## Contents
+
+- [Features](#features)
+- [Quick Start](#quick-start)
+- [Custom Adapters](#custom-adapters)
+- [API Reference](#api-reference)
+  - [Auth Module](#auth-module)
+  - [Records Module](#records-module)
+    - [File Uploads](#file-uploads)
+  - [Realtime Module](#realtime-module)
+- [Custom HTTP Adapter](#custom-http-adapter)
+- [Custom Storage Adapter](#custom-storage-adapter)
+- [Error Handling](#error-handling)
+- [Important Notes](#important-notes)
+- [Testing](#testing)
+
 ## Features
 
 - **Pluggable adapters**: Use default web adapters or bring your own HTTP and storage implementations
@@ -130,6 +146,139 @@ const updated = await sdk.records.update('posts', recordId, {
 
 // Delete record
 await sdk.records.delete('posts', recordId)
+```
+
+### File Uploads
+
+File fields in collections accept `File`, `Blob`, `FileList`, or arrays of those. When any file value is
+detected the SDK automatically sends the request as `multipart/form-data` — no extra setup needed.
+
+#### Create a record with a file
+
+```javascript
+// From a browser file input
+const file = document.querySelector('#avatar').files[0]
+
+const user = await sdk.records.create('users', {
+  name: 'Kevin',
+  avatar: file          // File object — SDK handles multipart automatically
+})
+```
+
+#### Create with multiple files
+
+```javascript
+const files = [...document.querySelector('#gallery').files]  // FileList → array
+
+const post = await sdk.records.create('posts', {
+  title: 'My Trip',
+  gallery: files        // Array of File objects
+})
+```
+
+#### Update — replace files on a field
+
+```javascript
+const newAvatar = document.querySelector('#new-avatar').files[0]
+
+await sdk.records.update('users', userId, {
+  avatar: newAvatar    // Replaces any existing avatar
+})
+```
+
+#### Update — append files to a multi-file field
+
+Suffix the field name with `+` to add files **without** replacing existing ones:
+
+```javascript
+await sdk.records.update('posts', postId, {
+  'gallery+': [file1, file2]
+})
+```
+
+#### Update — remove specific files
+
+Suffix the field name with `-` and pass a path or metadata selector:
+
+```javascript
+// Path comes from the file metadata returned by the API (see response shape below)
+await sdk.records.update('posts', postId, {
+  'gallery-': [{ path: 'collections/posts/abc123.jpg' }]
+})
+```
+
+#### File field response shape
+
+File fields are returned as an array of metadata objects:
+
+```json
+{
+  "id": "01JAB...",
+  "avatar": [
+    {
+      "name": "photo.jpg",
+      "path": "collections/users/01JAB-photo.jpg",
+      "size": 204800,
+      "extension": "jpg",
+      "mime": "image/jpeg"
+    }
+  ]
+}
+```
+
+The `path` value is what you pass to `field-` selectors when removing files.
+
+#### React
+
+```jsx
+function AvatarUpload({ userId }) {
+  const [uploading, setUploading] = useState(false)
+
+  async function handleChange(e) {
+    const file = e.target.files[0]
+    if (!file) return
+    setUploading(true)
+    try {
+      await sdk.records.update('users', userId, { avatar: file })
+    } finally {
+      setUploading(false)
+    }
+  }
+
+  return <input type="file" accept="image/*" onChange={handleChange} disabled={uploading} />
+}
+```
+
+#### Vue 3
+
+```vue
+<script setup>
+async function handleFileChange(e) {
+  const file = e.target.files[0]
+  if (!file) return
+  await sdk.records.create('photos', { title: 'Sunset', image: file })
+}
+</script>
+
+<template>
+  <input type="file" accept="image/*" @change="handleFileChange" />
+</template>
+```
+
+#### Angular
+
+```typescript
+private selectedFile: File | null = null
+
+onFileChange(event: Event) {
+  const input = event.target as HTMLInputElement
+  this.selectedFile = input.files?.[0] ?? null
+}
+
+async uploadAvatar() {
+  if (!this.selectedFile) return
+  await sdk.records.update('users', this.userId, { avatar: this.selectedFile })
+}
 ```
 
 ## Superuser / Admin Features
